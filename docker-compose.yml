@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:alpine
+    restart: always
+    ports: 
+      - '5432:5432'
+    volumes:
+      - '/home/desenvolvimnto/arquivos/postgres:/var/lib/postgres/data'
+    environment: 
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    
+
+  app:
+    build: .
+    depends_on:
+      - 'db'
+
+    command: bash start.sh
+    ports:
+      - '3000:3000'
+    volumes:
+      - '.:/app'
+      - 'gems:/gems'
+
+  mailcatcher:
+    image: tophfr/mailcatcher
+    ports:
+      - '1080:80'
+      - '1025:25'
+
+volumes:
+  gems:
