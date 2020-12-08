@@ -5,5 +5,6 @@ FactoryBot.define do
     status { :active }
     discount_value { 25 }
     due_date { 3.days.from_now }
+    max_use { Faker::Number.between(from: 1, to: 50) }
   end
 end

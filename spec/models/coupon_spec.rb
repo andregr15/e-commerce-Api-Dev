@@ -9,6 +9,7 @@ RSpec.describe Coupon, type: :model do
   it { is_expected.to validate_presence_of :discount_value }
   it { is_expected.to validate_numericality_of(:discount_value).is_greater_than(0) }
   it { is_expected.to validate_presence_of :due_date }
+  it { is_expected.to validate_numericality_of(:max_use).is_greater_than(0) }
 
   it "can't have past due_date" do
     subject.due_date = 1.day.ago

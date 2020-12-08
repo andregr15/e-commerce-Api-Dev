@@ -1,5 +1,5 @@
 json.coupons do
-  json.array! @loading_service.records, :id, :name, :code, :status, :discount_value, :due_date
+  json.array! @loading_service.records, :id, :name, :code, :status, :discount_value, :due_date, :max_use
 end
 
 json.meta do
