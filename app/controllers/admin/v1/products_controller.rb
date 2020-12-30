@@ -51,10 +51,10 @@ module Admin::V1
       # changing category_ids: [] to :category_ids
       # for some reason category_ids: [] was overwriting received params
       permitted_params = params.require(:product).permit(:id, :name, :description, :image, :price, :productable,
-                                                         :status, :category_ids)
+                                                         :status, category_ids:[])
       
       # converting json category_ids to array
-      permitted_params[:category_ids] = JSON.parse(permitted_params[:category_ids])
+      # permitted_params[:category_ids] = JSON.parse(permitted_params[:category_ids])
       permitted_params.merge(productable_params)
     end
 
